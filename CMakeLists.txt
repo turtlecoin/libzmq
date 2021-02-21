@@ -194,7 +194,7 @@ if(ENABLE_WS)
 
   message(STATUS "Enable WebSocket transport")
 
-  option(WITH_TLS "Use TLS for WSS support" ON)
+  option(WITH_TLS "Use TLS for WSS support" OFF)
   option(WITH_NSS "Use NSS instead of builtin sha1" OFF)
 
   if(WITH_TLS)
@@ -256,7 +256,7 @@ endif()
 # Select curve encryption library, defaults to tweetnacl To use libsodium instead, use --with-libsodium(must be
 # installed) To disable curve, use --disable-curve
 
-option(WITH_LIBSODIUM "Use libsodium instead of built-in tweetnacl" ON)
+option(WITH_LIBSODIUM "Use libsodium instead of built-in tweetnacl" OFF)
 option(WITH_LIBSODIUM_STATIC "Use static libsodium library" OFF)
 option(ENABLE_CURVE "Enable CURVE security" ON)
 
@@ -754,9 +754,9 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
   add_definitions(-D_DARWIN_C_SOURCE)
 endif()
 
-find_package(AsciiDoc)
+#find_package(AsciiDoc)
 
-cmake_dependent_option(WITH_DOC "Build Reference Guide documentation(requires DocBook)" ON "ASCIIDOC_FOUND;NOT WIN32"
+cmake_dependent_option(WITH_DOC "Build Reference Guide documentation(requires DocBook)" OFF "ASCIIDOC_FOUND;NOT WIN32"
                        OFF) # Do not build docs on Windows due to issues with symlinks
 
 if(MSVC)
@@ -1241,7 +1241,7 @@ if(MSVC)
     DEPENDS ${nsis-template})
 endif()
 
-option(WITH_DOCS "Build html docs" ON)
+option(WITH_DOCS "Build html docs" OFF)
 if(WITH_DOCS)
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc)
   file(
@@ -1292,7 +1292,7 @@ endif()
 
 # -----------------------------------------------------------------------------
 # output
-option(BUILD_SHARED "Whether or not to build the shared object" ON)
+option(BUILD_SHARED "Whether or not to build the shared object" OFF)
 option(BUILD_STATIC "Whether or not to build the static archive" ON)
 
 if(MSVC)
@@ -1589,7 +1589,7 @@ endif()
 # -----------------------------------------------------------------------------
 # tests
 
-option(BUILD_TESTS "Whether or not to build the tests" ON)
+option(BUILD_TESTS "Whether or not to build the tests" OFF)
 
 set(ZMQ_BUILD_TESTS
     ${BUILD_TESTS}
